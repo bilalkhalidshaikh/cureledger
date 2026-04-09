@@ -1,9 +1,14 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import SplitTextWrapper from "../../common/SplitTextWrapper";
 
+gsap.registerPlugin(ScrollTrigger);
+
 const CureInsight = () => {
-  // Refs for GSAP Parallax Animation
+  // Refs for GSAP Animations
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const imgWrapRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const shapeRef = useRef<HTMLDivElement>(null);
   const statRef = useRef<HTMLDivElement>(null);
@@ -11,86 +16,97 @@ const CureInsight = () => {
   const orb1Ref = useRef<HTMLDivElement>(null);
   const orb2Ref = useRef<HTMLDivElement>(null);
 
-  // Interactive Mouse Parallax Effect
+  // Scroll Reveal & Parallax Animations
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // 1. Staggered Scroll Reveal
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        },
+      });
+
+      tl.fromTo(
+        ".insight-anim",
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.15, ease: "power3.out" }
+      )
+      .fromTo(
+        imgWrapRef.current,
+        { scale: 0.9, opacity: 0, rotationY: 15 },
+        { scale: 1, opacity: 1, rotationY: 0, duration: 1.2, ease: "power3.out" },
+        "-=0.6"
+      )
+      .fromTo(
+        ".philosophy-item",
+        { x: 30, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.6, stagger: 0.15, ease: "power3.out" },
+        "-=0.8"
+      );
+
+      // 2. Image Scroll Parallax (Inner image moves inside the frame)
+      gsap.to(imgRef.current, {
+        yPercent: 15,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      // 3. Background Ambient Orbs Parallax
+      gsap.to(orb1Ref.current, {
+        y: 150,
+        ease: "none",
+        scrollTrigger: { trigger: sectionRef.current, start: "top bottom", end: "bottom top", scrub: true },
+      });
+      gsap.to(orb2Ref.current, {
+        y: -150,
+        ease: "none",
+        scrollTrigger: { trigger: sectionRef.current, start: "top bottom", end: "bottom top", scrub: true },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  // Interactive 3D Mouse Parallax Effect (Fixed Clipping Bug)
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (window.innerWidth < 992) return; // Disable on mobile
+    if (window.innerWidth < 992) return;
 
     const { clientX, clientY } = e;
-    const x = (clientX / window.innerWidth - 0.5) * 30; // Max movement distance
-    const y = (clientY / window.innerHeight - 0.5) * 30;
+    const x = (clientX / window.innerWidth - 0.5) * 20;
+    const y = (clientY / window.innerHeight - 0.5) * 20;
 
-    // Apply varying depths to different elements for a 3D effect
-    if (imgRef.current)
-      gsap.to(imgRef.current, {
-        x: x * -1.5,
-        y: y * -1.5,
+    // Center Image 3D Tilt
+    if (imgWrapRef.current) {
+      gsap.to(imgWrapRef.current, {
+        rotationY: x,
+        rotationX: -y,
+        transformPerspective: 1000,
         ease: "power2.out",
-        duration: 1,
+        duration: 0.6,
       });
-    if (shapeRef.current)
-      gsap.to(shapeRef.current, {
-        x: x * 2.5,
-        y: y * 2.5,
-        ease: "power2.out",
-        duration: 1,
-      });
-    if (statRef.current)
-      gsap.to(statRef.current, {
-        x: x * 1,
-        y: y * 1,
-        ease: "power2.out",
-        duration: 1,
-      });
-    if (listRef.current)
-      gsap.to(listRef.current, {
-        x: x * -0.8,
-        y: y * -0.8,
-        ease: "power2.out",
-        duration: 1,
-      });
+    }
 
-    // Background ambient orbs moving inversely
-    if (orb1Ref.current)
-      gsap.to(orb1Ref.current, {
-        x: x * -2,
-        y: y * -2,
-        ease: "power2.out",
-        duration: 1.5,
-      });
-    if (orb2Ref.current)
-      gsap.to(orb2Ref.current, {
-        x: x * 2,
-        y: y * 2,
-        ease: "power2.out",
-        duration: 1.5,
-      });
+    // Stat box subtle float
+    if (statRef.current) {
+      gsap.to(statRef.current, { x: x * 0.8, y: y * 0.8, ease: "power2.out", duration: 1 });
+    }
   };
 
   const handleMouseLeave = () => {
     if (window.innerWidth < 992) return;
-
-    // Smooth reset on mouse leave
-    gsap.to(
-      [
-        imgRef.current,
-        shapeRef.current,
-        statRef.current,
-        listRef.current,
-        orb1Ref.current,
-        orb2Ref.current,
-      ],
-      {
-        x: 0,
-        y: 0,
-        ease: "power3.out",
-        duration: 1.5,
-      }
-    );
+    if (imgWrapRef.current) gsap.to(imgWrapRef.current, { rotationY: 0, rotationX: 0, ease: "power3.out", duration: 1.2 });
+    if (statRef.current) gsap.to(statRef.current, { x: 0, y: 0, ease: "power3.out", duration: 1.2 });
   };
 
   return (
-    // FIX: Restored pt-120 to give the entire section proper professional breathing room from the top
     <div
+      ref={sectionRef}
       className="td-about-area pb-120 pt-120 p-relative overflow-hidden"
       style={{ backgroundColor: "#003941" }}
       onMouseMove={handleMouseMove}
@@ -105,8 +121,7 @@ const CureInsight = () => {
           left: "-5%",
           width: "400px",
           height: "400px",
-          background:
-            "radial-gradient(circle, rgba(9,178,171,0.06) 0%, rgba(0,57,65,0) 70%)",
+          background: "radial-gradient(circle, rgba(9,178,171,0.06) 0%, rgba(0,57,65,0) 70%)",
           borderRadius: "50%",
           zIndex: 0,
           pointerEvents: "none",
@@ -120,8 +135,7 @@ const CureInsight = () => {
           right: "5%",
           width: "300px",
           height: "300px",
-          background:
-            "radial-gradient(circle, rgba(111,110,224,0.04) 0%, rgba(0,57,65,0) 70%)",
+          background: "radial-gradient(circle, rgba(111,110,224,0.04) 0%, rgba(0,57,65,0) 70%)",
           borderRadius: "50%",
           zIndex: 0,
           pointerEvents: "none",
@@ -133,7 +147,8 @@ const CureInsight = () => {
           {/* Main Headline */}
           <div className="col-12">
             {/* FIX: Added pt-40 here to push the title down slightly more for a cleaner look */}
-            <div className="td-about-3-title-wrap mb-80 pt-40">
+            {/* <div className="td-about-3-title-wrap mb-80 pt-40"> */}
+            <div className="td-about-3-title-wrap mb-4 pt-40">
               <h2
                 className="td-section-3-title td-split-text td-split-in-right"
                 style={{
@@ -141,11 +156,12 @@ const CureInsight = () => {
                   fontWeight: 800,
                   fontSize: "clamp(2.5rem, 4vw, 4rem)",
                   lineHeight: "1.2",
+                  textTransform: 'uppercase'
                 }}
               >
                 <SplitTextWrapper direction="right">
                   The financial backbone of <br />
-                  <span style={{ color: "#09B2AB", fontStyle: "italic" }}>
+                  <span style={{ color: "#09B2AB", fontStyle: "normal" }}>
                     modern dental practices.
                   </span>
                 </SplitTextWrapper>
@@ -225,7 +241,7 @@ const CureInsight = () => {
               <img
                 ref={imgRef}
                 className="w-100 shadow-lg"
-                src="https://images.pexels.com/photos/4483327/pexels-photo-4483327.jpeg"
+                src="/assets/img/sections/sectionseven.png"
                 alt="Dental Revenue Experts"
                 style={{
                   borderRadius: "24px",
@@ -269,19 +285,19 @@ const CureInsight = () => {
                   borderBottom: "2px solid rgba(9, 178, 171, 0.2)",
                 }}
               >
-                Our Core Services
+                Strategic Capabilities
               </h4>
               <ul
                 ref={listRef}
                 style={{ listStyle: "none", padding: 0, margin: 0 }}
               >
                 {[
-                  "Insurance Verification",
-                  "Claim Processing",
-                  "Patient Billing",
-                  "Credentialing",
-                  "A/R Follow-ups",
-                  "Appointment Scheduling",
+                  "EFT & Auto-Payment Posting",
+                  "PPO Fee Schedule Analysis",
+                  "Clinical Narrative Auditing",
+                  "Unbilled Procedure Tracking",
+                  "Secondary Claims & COB",
+                  "Daily Ledger Balancing",
                 ].map((service, index) => (
                   <li
                     key={index}

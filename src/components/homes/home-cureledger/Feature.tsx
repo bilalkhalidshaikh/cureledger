@@ -26,8 +26,8 @@ const Feature = () => {
    return (
       <div className="td-feature-area fix">
          <div className="fix">
-            {/* <img data-speed=".9" className="w-100" src="/assets/img/bigimage/thumb.jpg" alt="" /> */}
-            <img data-speed=".9" className="w-100" src="https://images.pexels.com/photos/3881791/pexels-photo-3881791.jpeg" alt="" />
+            <img data-speed=".9" className="w-100" src="/assets/img/sections/sectionfour.png" alt="" />
+            {/* <img data-speed=".9" className="w-100" src="https://images.pexels.com/photos/3881791/pexels-photo-3881791.jpeg" alt="" /> */}
          </div>
          <div className="td-feature-slide-wrap td-feature-2-spacing">
             <Swiper {...setting} modules={[Autoplay]} onSwiper={(swiper) => {

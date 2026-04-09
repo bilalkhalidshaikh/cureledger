@@ -38,17 +38,17 @@ const ContactArea = () => {
                         We protect what you've earned so your practice can grow with confidence. Reach out to us today.
                      </p>
 
-                     {/* Contact Details matching your exact layout */}
+                     {/* Contact Details */}
                      <div className="row g-4 mt-2">
                         <div className="col-sm-6">
-                           <h5 className="fw-bold mb-3" style={{ color: '#003941' }}>Austin Office</h5>
+                           <h5 className="fw-bold mb-3" style={{ color: '#003941' }}>Laredo Office</h5>
                            <p className="mb-1 fw-bold" style={{ color: '#09B2AB' }}>Texas —</p>
-                           <p style={{ color: '#002C34', opacity: 0.8, lineHeight: '1.6' }}>2025 Guadalupe St, Suite 260<br/>Austin, TX 78705</p>
+                           <p style={{ color: '#002C34', opacity: 0.8, lineHeight: '1.6' }}>2106 Mallorca Dr.<br/>Laredo, TX 78046</p>
                         </div>
                         <div className="col-sm-6">
                            <h5 className="fw-bold mb-3" style={{ color: '#003941' }}>Contact Us</h5>
                            <Link to="mailto:info@cureledger.org" className="d-block mb-2 fw-bold" style={{ color: '#09B2AB', textDecoration: 'none' }}>info@cureledger.org</Link>
-                           <Link to="tel:7379002401" className="d-block mb-4 fw-bold fs-5" style={{ color: '#003941', textDecoration: 'none' }}>(737) 900-2401</Link>
+                           <Link to="tel:+16076951944" className="d-block mb-4 fw-bold fs-5" style={{ color: '#003941', textDecoration: 'none' }}>+1 (607) 695-1944</Link>
                            <p className="mb-1 small fw-bold" style={{ color: '#003941' }}>Available Mon — Fri</p>
                            <p className="small" style={{ color: '#002C34', opacity: 0.8 }}>9:00 AM — 5:00 PM CST</p>
                         </div>

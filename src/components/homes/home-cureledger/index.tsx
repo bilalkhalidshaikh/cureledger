@@ -18,6 +18,7 @@ import CureHeader from "../../../layouts/headers/CureHeader";
 import Focus from "./Focus";
 import CureInsight from "./CureInsight";
 import Pricing from "./Pricing";
+import SecurityArea from "./SecurityArea";
 
 const HomeTwo = () => {
   return (
@@ -30,8 +31,9 @@ const HomeTwo = () => {
 
             <Achievement />
             <About />
-            <Process />
+            {/* <Process /> */}
             <Feature />
+            <SecurityArea/>
             <Focus />
             {/* <Brand /> */}
             {/* <Portfolio /> */}
@@ -39,8 +41,8 @@ const HomeTwo = () => {
             {/* <Testimonial /> */}
             <TextSlider />
             <CureInsight />
-            <Counter />
-            <Pricing />
+            {/* <Counter /> */}
+            {/* <Pricing /> */}
             {/* <Team /> */}
             <Faq />
 

@@ -52,10 +52,11 @@ const FooterTwo = () => {
                   Austin Office
                 </h4>
                 <p style={{ color: "#002C34", lineHeight: "1.8" }}>
-                  Texas —<br />
+                  {/* Texas —<br />
                   2025 Guadalupe St, Suite 260
                   <br />
-                  Austin, TX 78705
+                  Austin, TX 78705 */}
+                  2106 MALLORCA DR. LAREDO TX 78046
                 </p>
                 <div className="td-footer-3-social mt-30 d-flex gap-3">
                   <Link to="#" style={{ color: "#09B2AB" }}>
@@ -107,10 +108,10 @@ const FooterTwo = () => {
                 </Link>
                 <Link
                   className="fw-bold"
-                  to="tel:+17379002401"
+                  to="tel:+1(607) 695-19441"
                   style={{ color: "#003941", fontSize: "1.1rem" }}
                 >
-                  (737) 900-2401
+                  +1-(607)-695-1944
                 </Link>
                 <p
                   className="mt-20"
@@ -136,7 +137,7 @@ const FooterTwo = () => {
                   <ul className="d-flex flex-wrap gap-4 list-unstyled">
                     <li>
                       <Link
-                        to="/"
+                        to="/service"
                         style={{ color: "#002C34", fontWeight: 600 }}
                       >
                         Services
@@ -144,7 +145,7 @@ const FooterTwo = () => {
                     </li>
                     <li>
                       <Link
-                        to="/"
+                        to="/pricing"
                         style={{ color: "#002C34", fontWeight: 600 }}
                       >
                         Pricing
@@ -152,23 +153,23 @@ const FooterTwo = () => {
                     </li>
                     <li>
                       <Link
-                        to="/"
+                        to="/about"
                         style={{ color: "#002C34", fontWeight: 600 }}
                       >
                         About Us
                       </Link>
                     </li>
-                    <li>
+                    {/* <li>
                       <Link
                         to="/"
                         style={{ color: "#002C34", fontWeight: 600 }}
                       >
                         FAQ
                       </Link>
-                    </li>
+                    </li> */}
                     <li>
                       <Link
-                        to="/"
+                        to="/contact"
                         style={{ color: "#002C34", fontWeight: 600 }}
                       >
                         Contact
@@ -181,9 +182,14 @@ const FooterTwo = () => {
                 <div className="td-footer-3-copyright mb-10">
                   <p style={{ color: "#002C34", opacity: 0.7, margin: 0 }}>
                     © {new Date().getFullYear()}{" "}
+                      <Link
+                        to="/"
+                        style={{ color: "#002C34", fontWeight: 600 }}
+                      >
                     <span style={{ color: "#09B2AB", fontWeight: 700 }}>
-                      CureLedger.
+                        CureLedger.
                     </span>{" "}
+                      </Link>
                     All Rights Reserved.
                   </p>
                 </div>

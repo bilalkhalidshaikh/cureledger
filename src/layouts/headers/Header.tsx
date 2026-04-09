@@ -1,71 +1,12 @@
 import NavMenu from "./Menu/NavMenu";
 import { Link } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import Offcanvas from "./Menu/Offcanvas";
 import UseSticky from "../../hooks/UseSticky";
-import gsap from "gsap";
 
-const CureHeader = () => {
+const Header = () => {
   const { sticky } = UseSticky();
   const [offCanvas, setOffCanvas] = useState<boolean>(false);
-  
-  // Refs for the Announcement Bar & Interactive Nav
-  const announcementBgRef = useRef<HTMLDivElement>(null);
-  const marqueeWrapperRef = useRef<HTMLDivElement>(null);
-  const navRef = useRef<HTMLElement>(null);
-  
-  // FIXED: Explicitly type the ref to hold a GSAP Tween or null, and initialize with null.
-  const marqueeAnim = useRef<gsap.core.Tween | null>(null);
-
-  // Initialize Announcement Bar Animations
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // 1. Moving Background Pattern (Parallax Effect)
-      if (announcementBgRef.current) {
-        gsap.to(announcementBgRef.current, {
-          backgroundPosition: "200px 0",
-          duration: 10,
-          repeat: -1,
-          ease: "none"
-        });
-      }
-
-      // 2. Infinite Marquee Scrolling text
-      if (marqueeWrapperRef.current) {
-        marqueeAnim.current = gsap.to(".marquee-inner", {
-          xPercent: -100,
-          repeat: -1,
-          duration: 20,
-          ease: "none"
-        });
-      }
-    });
-
-    return () => ctx.revert();
-  }, []);
-
-  // Interactive Magnetic Hover for the Navbar
-  const handleNavMove = (e: React.MouseEvent) => {
-    if (window.innerWidth < 992 || !navRef.current) return;
-    const rect = navRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) * 0.03; 
-    const y = (e.clientY - rect.top - rect.height / 2) * 0.05;  
-
-    gsap.to(navRef.current, { 
-      x, 
-      y, 
-      rotationY: x * 0.5, 
-      rotationX: -y * 0.5, 
-      transformPerspective: 1000, 
-      duration: 0.4, 
-      ease: "power2.out" 
-    });
-  };
-
-  const handleNavLeave = () => {
-    if (window.innerWidth < 992 || !navRef.current) return;
-    gsap.to(navRef.current, { x: 0, y: 0, rotationY: 0, rotationX: 0, duration: 0.8, ease: "elastic.out(1, 0.5)" });
-  };
 
   return (
     <>
@@ -86,65 +27,17 @@ const CureHeader = () => {
            .mobile-nav-toggler { margin-left: 0 !important; }
            .logo-1 img, .logo-2 img { max-width: 130px !important; }
         }
-
-        /* Marquee specific styles */
-        .marquee-inner {
-            display: flex;
-            flex: 0 0 auto;
-            min-width: 100%;
-            justify-content: space-around;
-        }
       `}</style>
 
-      {/* --- EYE-CATCHING MOVING ANNOUNCEMENT BAR --- */}
-      <div 
-        ref={announcementBgRef}
-        className="d-none d-md-flex align-items-center w-100 overflow-hidden shadow-sm"
-        style={{
-            backgroundColor: "#09B2AB",
-            backgroundImage: "linear-gradient(45deg, rgba(255,255,255,0.1) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.1) 75%, transparent 75%, transparent)",
-            backgroundSize: "40px 40px",
-            padding: "10px 0",
-            position: "relative",
-            zIndex: 112,
-            cursor: "pointer",
-            borderBottom: "1px solid rgba(0, 57, 65, 0.1)"
-        }}
-        onMouseEnter={() => marqueeAnim.current?.pause()}
-        onMouseLeave={() => marqueeAnim.current?.play()}
-      >
-         <div ref={marqueeWrapperRef} style={{ display: 'flex', width: '200%', whiteSpace: 'nowrap' }}>
-            {[1, 2].map((key) => (
-                <div key={key} className="marquee-inner">
-                    <p className="m-0 fw-bold d-flex align-items-center px-4" style={{ color: "#ffffff", fontSize: "13px", letterSpacing: "1px" }}>
-                        <span className="badge bg-white text-dark me-3 rounded-pill px-3 py-1 shadow-sm">SPECIAL OFFER</span>
-                        World Oral Health Month (March) — Get a Free Practice Revenue Audit! 
-                        <Link to="/contact" className="ms-4 text-white text-decoration-underline d-inline-flex align-items-center" style={{ transition: "color 0.3s" }} onMouseEnter={(e)=>e.currentTarget.style.color="#002C34"} onMouseLeave={(e)=>e.currentTarget.style.color="#ffffff"}>
-                            Claim Offer <i className="fa-solid fa-arrow-right ms-2 fs-6"></i>
-                        </Link>
-                    </p>
-                    <p className="m-0 fw-bold d-flex align-items-center px-4" style={{ color: "#ffffff", fontSize: "13px", letterSpacing: "1px" }}>
-                        <span className="badge bg-white text-dark me-3 rounded-pill px-3 py-1 shadow-sm">SPECIAL OFFER</span>
-                        World Oral Health Month (March) — Get a Free Practice Revenue Audit! 
-                        <Link to="/contact" className="ms-4 text-white text-decoration-underline d-inline-flex align-items-center" style={{ transition: "color 0.3s" }} onMouseEnter={(e)=>e.currentTarget.style.color="#002C34"} onMouseLeave={(e)=>e.currentTarget.style.color="#ffffff"}>
-                            Claim Offer <i className="fa-solid fa-arrow-right ms-2 fs-6"></i>
-                        </Link>
-                    </p>
-                </div>
-            ))}
-         </div>
-      </div>
-
-      <header > {/* Added space below the entire header section */}
+      <header>
         <div
           id="header-sticky"
           className={`td-header__area td-header-sticky-white td-header-spacing td-header-2-wrapper p-relative z-index-1 ${
             sticky ? "header-sticky" : ""
           }`}
-          style={{ transition: "all 0.4s ease" }}
         >
           <div className="container">
-            <div className="row align-items-center justify-content-between flex-nowrap m-0 p-0">
+            <div className="row align-items-center justify-content-between flex-nowrap">
               
               {/* LOGO: Left aligned */}
               <div className="col-auto">
@@ -152,7 +45,7 @@ const CureHeader = () => {
                   {/* Logo 1: Shows at the top of the page */}
                   <Link className="logo-1" to="/">
                     <img
-                      src="/assets/img/logo/cure-ledger.png"
+                      src="/assets/img/logo/cureledger.png"
                       alt="CureLedger Logo"
                       style={{ maxWidth: "150px", width: "100%", height: "auto" }}
                     />
@@ -172,25 +65,18 @@ const CureHeader = () => {
               <div className="col-auto d-none d-xl-block">
                 <div className="tdmenu__wrap tdmenu-2-wrap d-flex justify-content-center">
                   <nav
-                    ref={navRef}
-                    onMouseMove={handleNavMove}
-                    onMouseLeave={handleNavLeave}
                     className="tdmenu__nav"
                     style={
                       !sticky
                         ? {
-                            backgroundColor: "rgb(0, 57, 65)", 
-                            // backdropFilter: "blur(12px)", 
-                            // WebkitBackdropFilter: "blur(12px)", 
+                            backgroundColor: "rgba(0, 57, 65, 0.6)", 
+                            backdropFilter: "blur(12px)", 
+                            WebkitBackdropFilter: "blur(12px)", 
                             borderRadius: "50px",
                             padding: "0 30px",
-                            // Left and Right borders removed here:
-                            borderTop: "1px solid rgba(255, 255, 255, 0.1)", 
-                            borderBottom: "1px solid rgba(255, 255, 255, 0.1)", 
-                            borderLeft: "none",
-                            borderRight: "none",
-                            transition: "box-shadow 0.3s ease, background-color 0.3s ease",
-                            // boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.1)",
+                            border: "1px solid rgba(255, 255, 255, 0.1)", 
+                            transition: "all 0.3s ease",
+                            boxShadow: "0 8px 32px 0 rgba(0, 0, 0, 0.1)",
                           }
                         : {
                             transition: "all 0.3s ease",
@@ -257,4 +143,4 @@ const CureHeader = () => {
   );
 };
 
-export default CureHeader;
+export default Header;

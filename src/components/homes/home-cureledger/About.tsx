@@ -1,11 +1,36 @@
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
-   // Refs for the parallax and interactive 3D effects
+   // Refs for parallax, scroll animations, and interactive 3D effects
+   const sectionRef = useRef<HTMLDivElement>(null);
    const bgImgRef = useRef<HTMLImageElement>(null);
    const cardRef = useRef<HTMLDivElement>(null);
    const badgeRef = useRef<HTMLDivElement>(null);
+
+   const servicesList = [
+      "Clinical Insurance Verification",
+      "Doctor-Led Claim Processing",
+      "Narrative & Attachment Optimization",
+      "EFT & ERA Reconciliation",
+      "Relentless A/R Follow-Up",
+      "Provider Credentialing",
+      "Patient Billing & Statements"
+   ];
+
+   // Scroll Reveal Animation
+   useEffect(() => {
+      const ctx = gsap.context(() => {
+         gsap.fromTo(".about-reveal", 
+            { y: 40, opacity: 0 }, 
+            { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out", scrollTrigger: { trigger: sectionRef.current, start: "top 75%" } }
+         );
+      }, sectionRef);
+      return () => ctx.revert();
+   }, []);
 
    // Interactive Mouse Parallax Effect for the background image
    const handleMouseMove = (e: React.MouseEvent) => {
@@ -14,8 +39,8 @@ const About = () => {
       const { clientX, clientY, currentTarget } = e;
       const rect = currentTarget.getBoundingClientRect();
       
-      const x = ((clientX - rect.left) / rect.width - 0.5) * 40; 
-      const y = ((clientY - rect.top) / rect.height - 0.5) * 40;
+      const x = ((clientX - rect.left) / rect.width - 0.5) * 30; 
+      const y = ((clientY - rect.top) / rect.height - 0.5) * 30;
 
       if (bgImgRef.current) {
          gsap.to(bgImgRef.current, { x: x * -1, y: y * -1, ease: "power2.out", duration: 1 });
@@ -64,6 +89,7 @@ const About = () => {
 
    return (
       <div 
+         ref={sectionRef}
          className="td-about-main-area pt-120 pb-120 overflow-hidden" 
          style={{ backgroundColor: '#ffffff' }}
          onMouseMove={handleMouseMove}
@@ -74,40 +100,38 @@ const About = () => {
             {/* Header Section */}
             <div className="row justify-content-center mb-60">
                <div className="col-lg-10 col-xl-9">
-                  <div className="text-center wow fadeInUp" data-wow-delay=".2s" data-wow-duration="1s">
-                     <span className="d-inline-block mb-20 px-4 py-2 rounded-pill fw-bold" 
-                           style={{ backgroundColor: 'rgba(9, 178, 171, 0.1)', color: '#09B2AB', letterSpacing: '1px', fontSize: '14px', textTransform: 'uppercase' }}>
-                        Our Focus
+                  <div className="text-center about-reveal">
+                     <span className="d-inline-block mb-3 px-4 py-2 rounded-pill fw-bold shadow-sm" 
+                           style={{ backgroundColor: 'rgba(9, 178, 171, 0.1)', color: '#09B2AB', letterSpacing: '1px', fontSize: '13px', textTransform: 'uppercase', border: '1px solid rgba(9, 178, 171, 0.2)' }}>
+                        OUR CORE SERVICES
                      </span>
-                     <h2 className="mb-0" style={{ color: '#003941', fontWeight: 800, fontSize: 'clamp(2rem, 4vw, 3.5rem)', lineHeight: '1.2' }}>
-                        We optimize your revenue cycle to help your practice grow, protecting <span style={{ color: '#09B2AB' }}>your income with precision.</span>
+                     <h2 className="mb-0" style={{ color: '#003941', fontWeight: 900, fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', lineHeight: '1.2',textTransform: 'uppercase' }}>
+                        Protecting Your Revenue. <br className="d-none d-md-block" /><span style={{ color: '#09B2AB' }}>Powering Your Growth.</span>
                      </h2>
                   </div>
                </div>
             </div>
 
-            <div className="row align-items-center">
+            <div className="row align-items-center g-5">
                
                {/* LEFT COLUMN: The Interactive 3D Parallax Block */}
-               <div className="col-lg-5 mb-5 mb-lg-0" style={{ perspective: '1000px' }}>
+               <div className="col-lg-5 about-reveal" style={{ perspective: '1000px' }}>
                   <div 
                      ref={cardRef}
                      onMouseMove={handleCardMove}
                      onMouseLeave={handleCardLeave}
-                     className="p-relative rounded-4 shadow-lg overflow-hidden d-flex align-items-center justify-content-center wow fadeInLeft" 
-                     data-wow-delay=".3s" 
-                     data-wow-duration="1s"
-                     style={{ minHeight: '450px', border: '1px solid rgba(9, 178, 171, 0.2)', transformStyle: 'preserve-3d', cursor: 'default' }}
+                     className="p-relative rounded-4 shadow-lg overflow-hidden d-flex align-items-center justify-content-center" 
+                     style={{ minHeight: '500px', border: '1px solid rgba(9, 178, 171, 0.2)', transformStyle: 'preserve-3d', cursor: 'crosshair' }}
                   >
                      
                      {/* Parallax Background Image: Dental professional doing billing/records */}
                      <img 
                         ref={bgImgRef}
-                        src="https://images.pexels.com/photos/3845653/pexels-photo-3845653.jpeg" 
+                        src="/assets/img/sections/sectionthree.png" 
                         alt="Dental Billing Professional" 
                         style={{ 
                            position: 'absolute', 
-                           top: '-10%', left: '-10%', 
+                           top: '-10%', left: '0%', 
                            width: '120%', height: '120%', 
                            objectFit: 'cover', 
                            zIndex: 0 
@@ -131,22 +155,22 @@ const About = () => {
                            fontWeight: 'bold', 
                            fontSize: '0.85rem',
                            zIndex: 3,
-                           boxShadow: '0 10px 20px rgba(0,0,0,0.2)',
+                           boxShadow: '0 10px 20px rgba(0,0,0,0.3)',
                            display: 'flex',
                            alignItems: 'center',
                            gap: '8px'
                         }}
                      >
-                        <i className="fa-solid fa-check-circle"></i> Verified Accuracy
+                        <i className="fa-solid fa-shield-check"></i> Clinical Precision
                      </div>
 
-                     {/* Glassmorphic Content with Decreased Size */}
-                     <div className="p-relative z-index-2 text-center p-5 w-100 h-100 d-flex flex-column justify-content-center align-items-center" 
-                          style={{ backdropFilter: 'blur(4px)', WebkitBackdropFilter: 'blur(4px)', transform: 'translateZ(30px)' }}>
-                        <h2 className="mb-0" style={{ fontSize: 'clamp(4.5rem, 8vw, 6.5rem)', fontWeight: 900, color: '#ffffff', lineHeight: '1' }}>
+                     {/* Glassmorphic Content */}
+                     <div className="p-relative z-index-2 text-center w-100 h-100 d-flex flex-column justify-content-center align-items-center" 
+                          style={{ backdropFilter: 'blur(3px)', WebkitBackdropFilter: 'blur(3px)', transform: 'translateZ(40px)' }}>
+                        <h2 className="mb-0" style={{ fontSize: 'clamp(4.5rem, 8vw, 7rem)', fontWeight: 900, color: '#ffffff', lineHeight: '1', textShadow: '0 10px 30px rgba(0,0,0,0.3)' }}>
                            98<span style={{ color: '#09B2AB', fontSize: 'clamp(3rem, 5vw, 4.5rem)' }}>%</span>
                         </h2>
-                        <span className="fw-bold mt-2" style={{ color: '#A3B1B2', letterSpacing: '2px', fontSize: '1rem', textTransform: 'uppercase' }}>
+                        <span className="fw-bold mt-2 px-3 py-1 rounded-pill" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: '#ffffff', letterSpacing: '2px', fontSize: '0.9rem', textTransform: 'uppercase', border: '1px solid rgba(255,255,255,0.2)' }}>
                            Average Collection Rate
                         </span>
                      </div>
@@ -154,58 +178,51 @@ const About = () => {
                   </div>
                </div>
 
-               {/* RIGHT COLUMN: The Strategy Text Cards */}
+               {/* RIGHT COLUMN: The Strategy Text & Service List */}
                <div className="col-lg-7">
-                  <div className="ms-lg-5">
-                     <div className="row g-4">
-                        
-                        {/* Strategy Card 1 */}
-                        <div className="col-md-6">
-                           <div className="h-100 p-4 rounded-4 wow fadeInUp" data-wow-delay=".4s" data-wow-duration="1s"
-                                style={{ backgroundColor: '#FAFAFA', border: '1px solid #E5E7E7', transition: 'all 0.3s ease' }}
-                                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.boxShadow = '0 15px 30px rgba(0,0,0,0.05)'; e.currentTarget.style.borderColor = '#09B2AB'; }}
-                                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#FAFAFA'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = '#E5E7E7'; }}>
-                              <div style={{ width: '50px', height: '50px', backgroundColor: 'rgba(9, 178, 171, 0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
-                                 <i className="fa-solid fa-bullseye" style={{ color: '#09B2AB', fontSize: '20px' }}></i>
+                  <div className="ms-lg-4">
+                     
+                     <p className="about-reveal mb-4" style={{ color: '#002C34', fontSize: '1.15rem', lineHeight: '1.7', opacity: 0.85 }}>
+                        CureLedger provides the clinical intelligence required to eliminate the 'medical necessity' denials that stall your cash flow. By auditing every claim against your clinical notes and X-rays before submission, we ensure your revenue is protected by doctor-level accuracy and your practice is powered by a <strong style={{ color: '#09B2AB' }}>98% average collection rate</strong>.
+                     </p>
+                     
+                     <p className="about-reveal mb-5 pb-3 border-bottom" style={{ color: '#003941', fontSize: '1.25rem', fontWeight: 700, lineHeight: '1.5' }}>
+                        We don't just process codes; we secure the full financial value of your dentistry.
+                     </p>
+
+                     {/* Services Grid */}
+                     <div className="row g-3">
+                        {servicesList.map((service, index) => (
+                           <div key={index} className="col-md-6 about-reveal">
+                              <div 
+                                 className="d-flex align-items-center p-3 rounded-3 shadow-sm transition-all" 
+                                 style={{ 
+                                    backgroundColor: '#FAFAFA', 
+                                    border: '1px solid rgba(0,57,65,0.05)',
+                                    cursor: 'default'
+                                 }}
+                                 onMouseEnter={(e) => {
+                                    e.currentTarget.style.backgroundColor = '#ffffff';
+                                    e.currentTarget.style.borderColor = '#09B2AB';
+                                    e.currentTarget.style.boxShadow = '0 10px 20px rgba(9, 178, 171, 0.1)';
+                                    e.currentTarget.style.transform = 'translateY(-2px)';
+                                 }}
+                                 onMouseLeave={(e) => {
+                                    e.currentTarget.style.backgroundColor = '#FAFAFA';
+                                    e.currentTarget.style.borderColor = 'rgba(0,57,65,0.05)';
+                                    e.currentTarget.style.boxShadow = '0 5px 15px rgba(0,0,0,0.05)';
+                                    e.currentTarget.style.transform = 'translateY(0)';
+                                 }}
+                              >
+                                 <div className="rounded-circle d-flex justify-content-center align-items-center me-3" style={{ width: '35px', height: '35px', backgroundColor: 'rgba(9, 178, 171, 0.1)' }}>
+                                    <i className="fa-solid fa-check" style={{ color: '#09B2AB', fontSize: '1rem' }}></i>
+                                 </div>
+                                 <span className="fw-bold" style={{ color: '#003941', fontSize: '0.95rem' }}>{service}</span>
                               </div>
-                              <h3 className="mb-3 fw-bold" style={{ color: '#003941', fontSize: '1.5rem' }}>Claim Accuracy</h3>
-                              <p className="mb-0" style={{ color: '#002C34', lineHeight: '1.6' }}>
-                                 Our clinical billing experts maximize your practice's ability to produce by ensuring every claim is coded correctly the first time.
-                              </p>
                            </div>
-                        </div>
-
-                        {/* Strategy Card 2 */}
-                        <div className="col-md-6">
-                           <div className="h-100 p-4 rounded-4 wow fadeInUp" data-wow-delay=".6s" data-wow-duration="1s"
-                                style={{ backgroundColor: '#FAFAFA', border: '1px solid #E5E7E7', transition: 'all 0.3s ease' }}
-                                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.boxShadow = '0 15px 30px rgba(0,0,0,0.05)'; e.currentTarget.style.borderColor = '#09B2AB'; }}
-                                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#FAFAFA'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = '#E5E7E7'; }}>
-                              <div style={{ width: '50px', height: '50px', backgroundColor: 'rgba(9, 178, 171, 0.1)', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '20px' }}>
-                                 <i className="fa-solid fa-shield-halved" style={{ color: '#09B2AB', fontSize: '20px' }}></i>
-                              </div>
-                              <h3 className="mb-3 fw-bold" style={{ color: '#003941', fontSize: '1.5rem' }}>Stop Revenue Leaks</h3>
-                              <p className="mb-0" style={{ color: '#002C34', lineHeight: '1.6' }}>
-                                 We aggressively pursue unpaid claims, fix denials instantly, and ensure you get paid every dollar you have earned.
-                              </p>
-                           </div>
-                        </div>
-
-                        {/* Bottom Full-Width Paragraph Card */}
-                        <div className="col-12">
-                           <div className="p-4 p-md-5 rounded-4 mt-2 wow fadeInUp" data-wow-delay=".8s" data-wow-duration="1s"
-                                style={{ backgroundColor: '#003941', position: 'relative', overflow: 'hidden' }}>
-                              
-                              {/* Abstract shape for premium feel */}
-                              <div style={{ position: 'absolute', top: '-20px', right: '-20px', width: '100px', height: '100px', backgroundColor: '#09B2AB', borderRadius: '50%', opacity: 0.1 }}></div>
-                              
-                              <p className="mb-0 p-relative z-index-2" style={{ color: '#FFFFFF', fontSize: '1.15rem', lineHeight: '1.7' }}>
-                                 Financial health is the backbone of a thriving practice, but it shouldn't be your daily distraction. We take the burden of insurance communication off your plate to ensure a seamless flow of payments and <span style={{ color: '#09B2AB', fontWeight: 'bold' }}>maximize your bottom line.</span>
-                              </p>
-                           </div>
-                        </div>
-
+                        ))}
                      </div>
+
                   </div>
                </div>
 
@@ -215,4 +232,4 @@ const About = () => {
    )
 }
 
-export default About
+export default About;

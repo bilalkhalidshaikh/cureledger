@@ -4,11 +4,12 @@ import ContactBranch from "./ContactBranch"
 import CureHeader from "../../layouts/headers/CureHeader"
 import FooterTwo from "../homes/home-cureledger/Footer"
 import BreadcrumbTwo from "../common/BreadcrumbTwo"
+import Header from "../../layouts/headers/Header"
 
 const Contact = () => {
    return (
       <>
-      <CureHeader/>
+      <Header/>
          <div id="smooth-wrapper">
             <div id="smooth-content">
                <main style={{ backgroundColor: '#FAFAFA' }}>

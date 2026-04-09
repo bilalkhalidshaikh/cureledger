@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
 const team_data = [
-   { id: 1, name: "Dr. Emily Chen", designation: "Clinical Director", thumb: "https://images.pexels.com/photos/5327921/pexels-photo-5327921.jpeg" },
-   { id: 2, name: "Michael Vance", designation: "VP of Revenue Cycle", thumb: "https://images.pexels.com/photos/5215024/pexels-photo-5215024.jpeg" },
-   { id: 3, name: "Sarah Torres", designation: "Head of Credentialing", thumb: "https://images.pexels.com/photos/4483327/pexels-photo-4483327.jpeg" },
-   { id: 4, name: "David Kim", designation: "A/R Specialist", thumb: "https://images.pexels.com/photos/6863268/pexels-photo-6863268.jpeg" }
+   { id: 3, name: "Dr. Asma Saad", designation: "Co Founder & Director of Operations", thumb: "/assets/img/team/3.png" },
+   { id: 1, name: "Dr. Muhammad Ali", designation: "Co-Founder & Director of Business Development", thumb: "/assets/img/team/1.png" },
+   { id: 2, name: "Dr Zahra", designation: "Manager of Insurance Operations", thumb: "/assets/img/team/2.png" },
+   { id: 4, name: "Dr Salman", designation: "Manager Revenue Cycle Operations", thumb: "/assets/img/team/4.png" }
 ];
 
 const Team = () => {

@@ -55,23 +55,23 @@ const ContactBranch = () => {
                         
                         <div className="col-md-5">
                            <div className="rounded-4 overflow-hidden shadow-sm" style={{ aspectRatio: '4/3' }}>
-                              <img className="w-100 h-100" style={{ objectFit: 'cover' }} src="https://images.pexels.com/photos/10186834/pexels-photo-10186834.jpeg" alt="Austin Texas Office" />
+                              <img className="w-100 h-100" style={{ objectFit: 'cover' }} src="https://images.pexels.com/photos/10186834/pexels-photo-10186834.jpeg" alt="Laredo Texas Office" />
                            </div>
                         </div>
 
                         <div className="col-md-7 ps-md-4">
                            <div className="d-flex align-items-center mb-3">
                               <i className="fa-solid fa-location-dot fs-3 me-3" style={{ color: '#09B2AB' }}></i>
-                              <h3 className="m-0 fw-bold" style={{ color: '#003941' }}>Austin, Texas</h3>
+                              <h3 className="m-0 fw-bold" style={{ color: '#003941' }}>Laredo, Texas</h3>
                            </div>
                            <p className="fs-5 mb-4" style={{ color: '#002C34', opacity: 0.8 }}>
-                              2025 Guadalupe Street, Suite 260<br/>Austin, TX 78705
+                              2106 Mallorca Dr.<br/>Laredo, TX 78046
                            </p>
                            
                            <div className="d-flex flex-wrap gap-4 mt-4 pt-4 border-top">
                               <div>
                                  <p className="small text-uppercase fw-bold mb-1" style={{ color: '#09B2AB', letterSpacing: '1px' }}>Give us a call</p>
-                                 <Link to="tel:7379002401" className="fs-5 fw-bold" style={{ color: '#003941', textDecoration: 'none' }}>(737) 900-2401</Link>
+                                 <Link to="tel:+16076951944" className="fs-5 fw-bold" style={{ color: '#003941', textDecoration: 'none' }}>+1 (607) 695-1944</Link>
                               </div>
                               <div>
                                  <p className="small text-uppercase fw-bold mb-1" style={{ color: '#09B2AB', letterSpacing: '1px' }}>Send an email</p>

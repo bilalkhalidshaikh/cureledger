@@ -6,11 +6,12 @@ import Testimonial from "../../homes/home-five/Testimonial"
 import CureHeader from "../../../layouts/headers/CureHeader"
 import FooterTwo from "../../homes/home-cureledger/Footer"
 import BreadcrumbTwo from "../../common/BreadcrumbTwo"
+import Header from "../../../layouts/headers/Header"
 
 const About = () => {
    return (
       <>
-         <CureHeader />
+         <Header />
          <div id="smooth-wrapper">
             <div id="smooth-content">
                <main style={{ backgroundColor: '#FAFAFA' }}>
@@ -22,8 +23,8 @@ const About = () => {
                   />
 
                   <AboutArea />
-                  <Feature />
                   <Awards />
+                  {/* <Feature /> */}
                   <Testimonial />
                   <Team />
                   

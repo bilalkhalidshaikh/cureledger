@@ -8,12 +8,14 @@ import ServiceArea from "./ServiceArea"
 import ServiceItem from "./ServiceItem"
 import Services from "./Services"
 import ServiceContact from "./ServiceContact"
+import Header from "../../../../layouts/headers/Header"
+
 
 
 const Service = () => {
    return (
       <>
-         <CureHeader/>
+         <Header/>
          <div id="smooth-wrapper">
             <div id="smooth-content">
                <main style={{ backgroundColor: '#FAFAFA' }}>
@@ -21,8 +23,8 @@ const Service = () => {
                      title={<>Comprehensive  <br /> <span style={{ color: '#09B2AB' }}>Dental RCM </span></>}
                      desc="Our end-to-end revenue cycle management solutions are customized for practices of all sizes and specialties — so you can focus on dentistry while we handle the numbers."
                   />
-                  <ServiceArea />
                   <Services/>
+                  {/* <ServiceArea /> */}
                   {/* <ServiceItem /> */}
                   {/* <Brand style={true} /> */}
                   <ServiceContact/>
