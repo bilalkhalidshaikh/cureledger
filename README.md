@@ -12,9 +12,15 @@ CureLedger is a dedicated web application engineered to streamline revenue cycle
 * **Component Architecture:** Modular structure utilizing custom layouts, headers, and secure routing.
 * **Deployment:** Vercel
 
-## Local Development
-To run this build locally:
+## Business Details
 
-1. Clone the repository:
-   ```bash
-   git clone [https://github.com/bilalkhalidshaikh/cureledger.git](https://github.com/bilalkhalidshaikh/cureledger.git)
+**Optimize billing for your practice.**
+*We protect what you've earned so your practice can grow with confidence.*
+
+* **Email:** [info@cureledger.org](mailto:info@cureledger.org)
+* **Phone:** +1-(607)-695-1944
+* **Office Location:** 2106 MALLORCA DR. LAREDO TX 78046
+* **Support Hours:** Mon — Fri | 9:00 AM — 5:00 PM CST
+
+## Infrastructure & Security
+This application is designed with strict boundaries between the client-side UI and secure backend infrastructure. Deployment environments and administrative access are tightly controlled to ensure zero unauthorized interference during the production phases.
