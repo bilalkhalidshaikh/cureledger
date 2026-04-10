@@ -1,69 +1,34 @@
-# React + TypeScript + Vite
+```markdown
+# CureLedger
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Enterprise-grade Dental Billing and Revenue Cycle Management (RCM) platform.
 
-Currently, two official plugins are available:
+**🌐 Live Site:** [https://cureledger.org](https://cureledger.org)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
+CureLedger is a dedicated web application engineered to streamline revenue cycle management, billing accuracy, and administrative workflows for modern dental practices. This repository contains the front-end architecture, UI components, and client-side logic.
 
-## Expanding the ESLint configuration
+## Technical Architecture
+* **Core Framework:** React.js
+* **Component Architecture:** Modular structure utilizing custom layouts, headers, and secure routing.
+* **Deployment:** Vercel
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Local Development
+To run this build locally:
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+1. Clone the repository:
+   ```bash
+   git clone [https://github.com/bilalkhalidshaikh/cureledger.git](https://github.com/bilalkhalidshaikh/cureledger.git)
+   ```
+2. Install the necessary dependencies:
+   ```bash
+   npm install
+   ```
+3. Boot up the development server:
+   ```bash
+   npm start
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Infrastructure & Security
+This application is designed with strict boundaries between the client-side UI and secure backend infrastructure. Deployment environments and administrative access are tightly controlled to ensure zero unauthorized interference during the production phases.
 ```
