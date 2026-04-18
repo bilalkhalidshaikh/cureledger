@@ -2,6 +2,8 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import SplitTextWrapper from "../../common/SplitTextWrapper";
+import sectionSevenImg from "/assets/img/sections/sectionseven.png"; 
+// Adjust the path above if your folder structure is different
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -241,7 +243,8 @@ const CureInsight = () => {
               <img
                 ref={imgRef}
                 className="w-100 shadow-lg"
-                src="/assets/img/sections/sectionseven.png"
+                // src="/assets/img/sections/sectionseven.png"
+                src={sectionSevenImg} // Use the imported variable here
                 alt="Dental Revenue Experts"
                 style={{
                   borderRadius: "24px",

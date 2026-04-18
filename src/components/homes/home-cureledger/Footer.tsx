@@ -101,10 +101,10 @@ const FooterTwo = () => {
                 </h4>
                 <Link
                   className="d-block mb-10 fw-bold"
-                  to="mailto:info@cureledger.com"
+                  to="mailto:contact@cureledger.com"
                   style={{ color: "#09B2AB", fontSize: "1.1rem" }}
                 >
-                  info@cureledger.org
+                  contact@cureledger.org
                 </Link>
                 <Link
                   className="fw-bold"
@@ -182,14 +182,11 @@ const FooterTwo = () => {
                 <div className="td-footer-3-copyright mb-10">
                   <p style={{ color: "#002C34", opacity: 0.7, margin: 0 }}>
                     © {new Date().getFullYear()}{" "}
-                      <Link
-                        to="/"
-                        style={{ color: "#002C34", fontWeight: 600 }}
-                      >
-                    <span style={{ color: "#09B2AB", fontWeight: 700 }}>
+                    <Link to="/" style={{ color: "#002C34", fontWeight: 600 }}>
+                      <span style={{ color: "#09B2AB", fontWeight: 700 }}>
                         CureLedger.
-                    </span>{" "}
-                      </Link>
+                      </span>{" "}
+                    </Link>
                     All Rights Reserved.
                   </p>
                 </div>

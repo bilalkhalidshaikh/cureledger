@@ -22,7 +22,7 @@ const Wrapper = ({ children }: WrapperProps) => {
     <>
       {children}
       <ScrollToTop />
-      <CustomCursor />
+      {/* <CustomCursor /> */}
       <ToastContainer position="top-center" />
     </>
   );

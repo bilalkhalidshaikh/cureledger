@@ -5,7 +5,7 @@ import Wrapper from "../layouts/Wrapper"
 const HomeCureLedger = () => {
    return (
       <Wrapper>
-         <SEO pageTitle={'CureLedger - Dental Billing'} />
+         <SEO pageTitle={'Home'} />
          <HomeCureLedgerMain />
       </Wrapper>
    )

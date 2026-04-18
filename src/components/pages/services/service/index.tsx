@@ -16,8 +16,12 @@ const Service = () => {
    return (
       <>
          <Header/>
-         <div id="smooth-wrapper">
-            <div id="smooth-content">
+         <div 
+         id="smooth-wrapper"
+         >
+            <div
+             id="smooth-content"
+             >
                <main style={{ backgroundColor: '#FAFAFA' }}>
                   <BreadcrumbTwo sub_title="OUR EXPERTISE"
                      title={<>Comprehensive  <br /> <span style={{ color: '#09B2AB' }}>Dental RCM </span></>}

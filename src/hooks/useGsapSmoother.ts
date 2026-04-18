@@ -21,7 +21,7 @@ const useGsapSmoother = () => {
          smoother = ScrollSmoother.create({
             wrapper,
             content,
-            smooth: 2,
+            smooth: 0.5,
             effects: true,
             smoothTouch: 0.1,
             normalizeScroll: false,
