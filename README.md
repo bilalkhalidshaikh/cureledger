@@ -17,7 +17,7 @@ CureLedger is a dedicated web application engineered to streamline revenue cycle
 **Optimize billing for your practice.**
 *We protect what you've earned so your practice can grow with confidence.*
 
-* **Email:** [info@cureledger.org](mailto:info@cureledger.org)
+* **Email:** [contact@cureledger.org](mailto:contact@cureledger.org)
 * **Phone:** +1-(607)-695-1944
 * **Office Location:** 2106 MALLORCA DR. LAREDO TX 78046
 * **Support Hours:** Mon — Fri | 9:00 AM — 5:00 PM CST
