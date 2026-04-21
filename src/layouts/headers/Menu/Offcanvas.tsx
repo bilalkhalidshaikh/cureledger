@@ -26,7 +26,7 @@ const Offcanvas = ({ offCanvas, setOffCanvas }: MobileSidebarProps) => {
                   <MobileMenu />
                </div>
                <div className="mt-30 ml-25 mr-25">
-                  <Link to="/" className="td-btn td-btn-menu-black w-100 d-inline-block td-btn-switch-animation ml-10">
+                  <Link to="/contact" className="td-btn td-btn-menu-black w-100 d-inline-block td-btn-switch-animation ml-10">
                      <span className="d-flex align-items-center justify-content-center">
                         <span className="btn-text"> Contact Us </span>
                         <span className="btn-icon"><i className="fa-sharp fa-solid fa-angle-right"></i></span>
@@ -36,11 +36,11 @@ const Offcanvas = ({ offCanvas, setOffCanvas }: MobileSidebarProps) => {
                </div>
                <div className="social-links">
                   <ul className="list-wrap">
-                     <li><Link to="#"><i className="fab fa-facebook-f"></i></Link></li>
-                     <li><Link to="#"><i className="fab fa-twitter"></i></Link></li>
-                     <li><Link to="#"><i className="fab fa-instagram"></i></Link></li>
-                     <li><Link to="#"><i className="fab fa-linkedin-in"></i></Link></li>
-                     <li><Link to="#"><i className="fab fa-youtube"></i></Link></li>
+                     <li><Link to="https://www.facebook.com/share/1CqX2CGBnH/?mibextid=wwXIfr"><i className="fab fa-facebook-f"></i></Link></li>
+                     {/* <li><Link to="#"><i className="fab fa-twitter"></i></Link></li> */}
+                     <li><Link to="https://www.instagram.com/cureledger.inc?igsh=MXRueTk3bTJ5ZThidQ%3D%3D&utm_source=qr"><i className="fab fa-instagram"></i></Link></li>
+                     <li><Link to="https://www.linkedin.com/company/cureledger-dental-revenue-solutions/"><i className="fab fa-linkedin-in"></i></Link></li>
+                     {/* <li><Link to="#"><i className="fab fa-youtube"></i></Link></li> */}
                   </ul>
                </div>
             </nav>

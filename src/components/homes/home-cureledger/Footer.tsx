@@ -59,10 +59,10 @@ const FooterTwo = () => {
                   2106 MALLORCA DR. LAREDO TX 78046
                 </p>
                 <div className="td-footer-3-social mt-30 d-flex gap-3">
-                  <Link to="#" style={{ color: "#09B2AB" }}>
+                  <Link to="https://www.facebook.com/share/1CqX2CGBnH/?mibextid=wwXIfr" style={{ color: "#09B2AB" }}>
                     <i className="fa-brands fa-facebook-f"></i>
                   </Link>
-                  <Link to="#" style={{ color: "#09B2AB" }}>
+                  {/* <Link to="#" style={{ color: "#09B2AB" }}>
                     <svg
                       width="13"
                       height="13"
@@ -75,11 +75,11 @@ const FooterTwo = () => {
                         fill="currentColor"
                       />
                     </svg>
-                  </Link>
-                  <Link to="#" style={{ color: "#09B2AB" }}>
+                  </Link> */}
+                  <Link to="https://www.linkedin.com/company/cureledger-dental-revenue-solutions/" style={{ color: "#09B2AB" }}>
                     <i className="fa-brands fa-linkedin-in"></i>
                   </Link>
-                  <Link to="#" style={{ color: "#09B2AB" }}>
+                  <Link to="https://www.instagram.com/cureledger.inc?igsh=MXRueTk3bTJ5ZThidQ%3D%3D&utm_source=qr" style={{ color: "#09B2AB" }}>
                     <i className="fa-brands fa-instagram"></i>
                   </Link>
                 </div>

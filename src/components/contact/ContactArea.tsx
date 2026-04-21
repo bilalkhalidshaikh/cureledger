@@ -160,8 +160,10 @@ const ContactArea = () => {
               </div>
 
               {/* Social Links */}
-              <div className="d-flex gap-3 mt-4 pt-3 border-top">
-                {["facebook-f", "x-twitter", "linkedin-in", "instagram"].map(
+              {/* <div className="d-flex gap-3 mt-4 pt-3 border-top">
+                {["facebook-f",
+                 "x-twitter",
+                  "linkedin-in", "instagram"].map(
                   (icon, i) => (
                     <Link
                       key={i}
@@ -188,7 +190,40 @@ const ContactArea = () => {
                     </Link>
                   ),
                 )}
-              </div>
+              </div> */}
+              {/* Social Links */}
+        <div className="d-flex gap-3 mt-4 pt-3 border-top">
+          {[
+            { icon: "facebook-f", url: "https://www.facebook.com/share/1CqX2CGBnH/?mibextid=wwXIfr" },
+            { icon: "linkedin-in", url: "https://www.linkedin.com/company/cureledger-dental-revenue-solutions/" },
+            { icon: "instagram", url: "https://www.instagram.com/cureledger.inc?igsh=MXRueTk3bTJ5ZThidQ%3D%3D&utm_source=qr" }
+          ].map((social, i) => (
+            <Link
+              key={i}
+              to={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="d-flex align-items-center justify-content-center rounded-circle transition-all"
+              style={{
+                width: "40px",
+                height: "40px",
+                backgroundColor: "rgba(9,178,171,0.1)",
+                color: "#09B2AB",
+                textDecoration: "none",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "#09B2AB";
+                e.currentTarget.style.color = "#fff";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "rgba(9,178,171,0.1)";
+                e.currentTarget.style.color = "#09B2AB";
+              }}
+            >
+              <i className={`fa-brands fa-${social.icon}`}></i>
+            </Link>
+          ))}
+        </div>
             </div>
           </div>
 
