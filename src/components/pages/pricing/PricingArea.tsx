@@ -465,12 +465,12 @@ const PricingArea = () => {
                   {[
                     {
                       l: "The Foundation Plan",
-                      p: "$1,250",
+                      p: "$1,250 (upto 50k)",
                       d: "Fixed Monthly",
                     },
-                    { l: "The Growth Plan", p: "3%", d: "Collections" },
-                    { l: "The Accelerate Plan", p: "2.5%", d: "Collections" },
-                    { l: "The Enterprise Plan", p: "2%", d: "Collections" },
+                    { l: "The Growth Plan", p: "3% (50k - 125k)", d: "Collections" },
+                    { l: "The Accelerate Plan", p: "2.5% (125k - 200k)", d: "Collections" },
+                    { l: "The Enterprise Plan", p: "2% (over 200k)", d: "Collections" },
                   ].map((v, idx) => (
                     <div key={idx} className="col-md-3 border-end px-4">
                       <h5
